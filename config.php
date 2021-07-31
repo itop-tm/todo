@@ -4,7 +4,7 @@ return [
     'database' => [
         'dbname' => 'todo_app',
         'username' => 'root',
-        'password' => '',
+        'password' => null,
         'driver' => 'mysql',
         'host' => '127.0.0.1',
         'options' => [
