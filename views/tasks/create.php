@@ -17,6 +17,7 @@
                     name="name" 
                     placeholder="Mohamed"
                     autocomplete="off"
+                    required
                 >
             </div>
             <div class="mb-3">
@@ -30,6 +31,7 @@
                     id="email" 
                     name="email" 
                     placeholder="name@example.com"
+                    required
                     autocomplete="off"
                 >
             </div>
@@ -41,7 +43,8 @@
                 <textarea 
                     class="form-control" 
                     id="description" 
-                    name="description" 
+                    name="description"
+                    required
                     rows="3"
                 ></textarea>
             </div>

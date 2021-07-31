@@ -3,7 +3,7 @@
 
 <div class="d-flex justify-content-center ">
     <div class="col-xs-12 col-md-4">
-        <h1>Admin login</h1>
+        <h1 class="text-center">Admin login</h1>
         <form method="post" action="/auth" class="pt-4">
             <div class="mb-3">
                 <label 
@@ -15,6 +15,7 @@
                     class="form-control" 
                     id="login" 
                     name="login" 
+                    required
                     autocomplete="off"
                 >
             </div>
@@ -26,7 +27,8 @@
                 <input 
                     type="password" 
                     class="form-control" 
-                    id="password" 
+                    id="password"
+                    required
                     name="password" 
                 >
             </div>

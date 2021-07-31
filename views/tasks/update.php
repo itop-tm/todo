@@ -16,6 +16,7 @@
                     id="name" 
                     name="name" 
                     value="<?= $task->get('name') ?>"
+                    required
                     disabled
                     autocomplete="off"
                 >
@@ -31,6 +32,7 @@
                     id="email" 
                     name="email" 
                     value="<?= $task->get('email') ?>"
+                    required
                     disabled
                     autocomplete="off"
                 >
@@ -44,6 +46,7 @@
                     class="form-control" 
                     id="description" 
                     name="description" 
+                    required
                     rows="3"
                 ><?= $task->get('description') ?></textarea>
             </div>
