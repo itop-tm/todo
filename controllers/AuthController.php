@@ -33,6 +33,9 @@ class AuthController
             
             Session::put('auth_user', $user);
 
+            session()
+                ->put('success', 'You are logged in');
+
             return redirect('tasks');
 
         } catch (Exception $e) {
