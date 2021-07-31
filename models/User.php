@@ -11,11 +11,6 @@ class User
     protected $name;
     protected $email;
 
-    public static function pdo()
-    {
-        return App::get('db')->pdo;
-    }
-
     public function getName()
     {
         return $this->name;
@@ -40,7 +35,7 @@ class User
             implode(' AND ', $whereClause)
         );  
 
-        $query = self::pdo()->prepare($sql);
+        $query = db()->prepare($sql);
         $query->execute($parameters);
         
         return $query->fetch(PDO::FETCH_OBJ);

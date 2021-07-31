@@ -23,12 +23,12 @@ class AuthController
         
             if (!$user){
                 Session::put('error', 'User not found');
-                return back($_SERVER['HTTP_REFERER']);
+                return back();
             }
 
             if (!password_verify($_POST['password'], $user->password)) {
                 Session::put('error', 'Wrong password');
-                return back($_SERVER['HTTP_REFERER']);
+                return back();
             }
             
             Session::put('auth_user', $user);

@@ -1,7 +1,8 @@
 <?php require 'views/layouts/top.php' ?>
 
 <div class="d-flex justify-content-center ">
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <?php require 'views/partials/messages.php' ?>
         <h1>Update task # <?= $task->id?> </h1>
         <form method="post" action="/tasks/edit?id=<?= $task->id ?>" class="pt-4">
             <div class="mb-3">
@@ -14,7 +15,7 @@
                     class="form-control" 
                     id="name" 
                     name="name" 
-                    value="<?= $task->name ?>"
+                    value="<?= $task->get('name') ?>"
                     disabled
                     autocomplete="off"
                 >
@@ -29,7 +30,7 @@
                     class="form-control" 
                     id="email" 
                     name="email" 
-                    value="<?= $task->email ?>"
+                    value="<?= $task->get('email') ?>"
                     disabled
                     autocomplete="off"
                 >
@@ -44,7 +45,7 @@
                     id="description" 
                     name="description" 
                     rows="3"
-                ><?= $task->description ?></textarea>
+                ><?= $task->get('description') ?></textarea>
             </div>
 
             <div class="mb-3">

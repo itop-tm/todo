@@ -1,7 +1,8 @@
 <?php require 'views/layouts/top.php' ?>
 
 <div class="d-flex justify-content-center ">
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <?php require 'views/partials/messages.php' ?>
         <h1>Add new task</h1>
         <form method="post" action="/tasks" class="pt-4">
             <div class="mb-3">

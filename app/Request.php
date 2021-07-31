@@ -2,13 +2,10 @@
 
 namespace App\App;
 
-// A class responsible for accessing request-related data.
 class Request
 {
     public static function uri()
     {
-        // Requests to /foo?bar=12 should be
-        // redirected to /foo
         return trim(
             parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/'
         );
@@ -21,7 +18,7 @@ class Request
 
     public static function get(string $param)
     {
-        return $_REQUEST[$param] ?? null;
+        return trim($_REQUEST[$param] ?? null);
     }
 
     public static function getParams()
@@ -33,5 +30,14 @@ class Request
         }
 
         return $str;
+    }
+
+    public static function sortBy()
+    {
+        return in_array(self::get('sort_by'), [
+            'is_completed', 
+            'name', 
+            'email'
+        ]) ? self::get('sort_by') : 'is_completed';
     }
 }

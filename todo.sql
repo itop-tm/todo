@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.15.9
--- https://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jul 24, 2017 at 02:01 PM
--- Server version: 5.6.35
--- PHP Version: 5.6.30
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -31,6 +22,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `description` varchar(10000) DEFAULT NULL,
+  `updated_by_admin` tinyint(1) DEFAULT NULL,
   `is_completed` tinyint(1) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -96,15 +88,6 @@ ALTER TABLE `tasks`
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tasks`
---
--- ALTER TABLE `tasks`
---   ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

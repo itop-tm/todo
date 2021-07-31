@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 use App\App\App;
-use App\App\Request;
 use App\Models\Task;
 use JasonGrimes\Paginator;
 
@@ -10,14 +9,13 @@ class TaskController
 {
     public static function index()
     {
-        $request = new Request;
-
-        $sortBy = Request::get('sort_by') ?? 'created_at';
+        $sortBy = request()->sortBy();
+   
+        $currentPage = request()->get('page');
 
         $totalItems = Task::count();
         $itemsPerPage = 3;
-        $currentPage = Request::get('page') ?? 1;
-        
+        $currentPage =  $currentPage > 0 ? $currentPage : 1;
         $urlPattern = "?sort_by={$sortBy}&page=(:num)";
      
         $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
@@ -26,7 +24,7 @@ class TaskController
 
         $title = 'Tasks';
 
-        return view('tasks.index', compact('tasks', 'title', 'paginator', 'request'));
+        return view('tasks.index', compact('tasks', 'paginator', 'title'));
     }
 
     public static function showCreateForm()
@@ -38,13 +36,20 @@ class TaskController
 
     public static function store()
     {  
+        $data = [
+            'name'        => $_POST['name'],
+            'email'       => $_POST['email'],
+            'description' => $_POST['description']
+        ];
+
+       if(!self::validate($data)) {
+            session()->put('error', 'Please provide a valid data');
+            return back();
+       }
+
         try {
 
-            Task::create([
-                'name'        => $_POST['name'],
-                'email'       => $_POST['email'],
-                'description' => $_POST['description']
-            ]);
+            Task::create($data);
 
             return redirect('tasks');
 
@@ -58,15 +63,30 @@ class TaskController
         $title = 'Update Tasks';
 
         $task = Task::fetchFirst(['id' => request()->get('id')]);
-
+        
         return view('tasks.update', compact('title', 'task'));
     }
 
     public static function update()
     {  
+        if(!session()->has('auth_user')) {
+            session()
+                ->put('error', 'Unauthorized action');
+
+            return back();
+        }
+
+        $task = Task::fetchFirst(['id' => request()->get('id')]);
+
+        if(!self::validate(['description' => request()->get('description')])) {
+            session()
+                ->put('error', 'Task description cannot be null');
+            return back();
+        }
+
         try {
 
-            Task::update(request()->get('id'), [
+            $task->update([
                 'is_completed' => (int)request()->get('is_completed'),
                 'description'  => request()->get('description')
             ]);
@@ -78,18 +98,25 @@ class TaskController
         }
     }
 
-
     public static function completeTask()
     {  
         try {
 
             Task::markAsCompleted(request()->get('id'));
 
-            return redirect('tasks');
+            return back();
 
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             require "views/500.php";
         }
+    }
 
+    public static function validate(array $data)
+    {  
+        return empty(
+            array_filter($data, function ($v) { 
+                return $v == null;
+            })
+        );
     }
 }

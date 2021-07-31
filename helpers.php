@@ -7,6 +7,11 @@ function setQueryString(array $params)
     return '?'.http_build_query(array_merge($_GET, $params));
 }
 
+function db()
+{
+    return App::get('db')->pdo;
+}
+
 function session()
 {
     return App::get('session');
@@ -22,9 +27,9 @@ function redirect(string $endpoint)
     header("Location: /{$endpoint}");
 }
 
-function back(string $endpoint)
+function back()
 {
-    header("Location: {$endpoint}");
+    header("Location: {$_SERVER['HTTP_REFERER']}");
 }
 
 function view(string $viewName, $context=[])
