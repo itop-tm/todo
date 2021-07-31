@@ -43,13 +43,18 @@ class TaskController
         ];
 
        if(!self::validate($data)) {
-            session()->put('error', 'Please provide a valid data');
+            session()
+                ->put('error', 'Please provide a valid data');
+
             return back();
        }
 
         try {
 
             Task::create($data);
+
+            session()
+                ->put('success', 'Task created');
 
             return redirect('tasks');
 
@@ -76,13 +81,14 @@ class TaskController
             return back();
         }
 
-        $task = Task::fetchFirst(['id' => request()->get('id')]);
-
         if(!self::validate(['description' => request()->get('description')])) {
             session()
                 ->put('error', 'Task description cannot be null');
+                
             return back();
         }
+
+        $task = Task::fetchFirst(['id' => request()->get('id')]);
 
         try {
 

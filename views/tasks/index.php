@@ -28,6 +28,10 @@
 
 <?php if(count($tasks) > 0): ?>
 
+    <div class="pt-2">
+        <?php require 'views/partials/messages.php' ?>
+    </div>
+
     <?php foreach ($tasks as $task) : ?>
         <div class="card my-4">
             <div class="card-header">

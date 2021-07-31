@@ -2,7 +2,7 @@
 <?php require 'views/partials/messages.php' ?>
 
 <div class="d-flex justify-content-center ">
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
         <h1 class="text-center">Admin login</h1>
         <form method="post" action="/auth" class="pt-4">
             <div class="mb-3">
