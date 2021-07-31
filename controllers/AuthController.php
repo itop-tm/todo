@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Controllers;
-use App\App\App;
-use App\App\Session;
-use App\Models\User;
 
+use App\Models\User;
 
 class AuthController
 {
@@ -22,19 +20,16 @@ class AuthController
             $user = User::fetchFirst(['login' => $_POST['login']]);
         
             if (!$user){
-                Session::put('error', 'User not found');
+                session()->put('error', 'User not found');
                 return back();
             }
 
             if (!password_verify($_POST['password'], $user->password)) {
-                Session::put('error', 'Wrong password');
+                session()->put('error', 'Wrong password');
                 return back();
             }
             
-            Session::put('auth_user', $user);
-
-            session()
-                ->put('success', 'You are logged in');
+            session()->put('auth_user', $user);
 
             return redirect('tasks');
 

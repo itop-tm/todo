@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\App\App;
+
 use App\Models\Task;
 use JasonGrimes\Paginator;
 
