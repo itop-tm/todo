@@ -3,8 +3,8 @@
 return [
     'database' => [
         'dbname' => 'todo_app',
-        'username' => 'root',
-        'password' => 'rootdb',
+        'username' => 'dpuser',
+        'password' => 'rootdb123123',
         'driver' => 'mysql',
         'host' => '127.0.0.1',
         'options' => [
