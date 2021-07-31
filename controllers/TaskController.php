@@ -97,6 +97,9 @@ class TaskController
                 'description'  => request()->get('description')
             ]);
 
+            session()
+                ->put('success', 'Task updated');
+
             return redirect('tasks');
 
         } catch (Exception $e) {
