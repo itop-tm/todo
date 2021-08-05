@@ -1,8 +1,8 @@
 <?php
 
-namespace App\App;
+namespace App;
 
-class App
+class AppProvider
 {
     protected static $registry = [];
 

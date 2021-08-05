@@ -37,9 +37,9 @@ class TaskController
     public static function store()
     {  
         $data = [
-            'name'        => $_POST['name'],
-            'email'       => $_POST['email'],
-            'description' => $_POST['description']
+            'name'        => request()->get('name'),
+            'email'       => request()->get('email'),
+            'description' => request()->get('description')
         ];
 
        if(!self::validate($data)) {

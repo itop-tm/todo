@@ -1,6 +1,6 @@
 <?php
 
-use App\App\App;
+use App\AppProvider as App;
 
 function setQueryString(array $params)
 {
@@ -32,7 +32,7 @@ function back()
     header("Location: {$_SERVER['HTTP_REFERER']}");
 }
 
-function view(string $viewName, $context=[])
+function view(string $viewName, $context = [] )
 {
     extract($context);
     $filePath = str_replace('.', '/', $viewName);

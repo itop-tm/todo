@@ -1,14 +1,16 @@
 <?php
 
-namespace App\App\Database;
+namespace App;
 use \PDO;
 
 class Connection
 {
-    public static function make(array $config)
+    public $pdo;
+
+    public function __construct(array $config)
     {
         try {
-            return new PDO(
+            $this->pdo = new PDO(
                 "{$config['driver']}:host={$config['host']};dbname={$config['dbname']}",
                 $config['username'],
                 $config['password'],
